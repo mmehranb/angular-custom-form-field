@@ -1,3 +1,43 @@
-<div [formGroup]="form">
-  <input type="text" formControlName="{{ formCtrlName }}" />
+<div
+  class="field"
+  [ngClass]="{
+    'field--active': inputActive,
+    'field--focus': inputFocus,
+    'field--invalid': validationMessage && control.touched
+  }"
+  style="margin-bottom: 16px"
+>
+  <label class="field__content">
+    <span class="field__label">
+      {{ label }}
+    </span>
+    <ng-container [ngSwitch]="fieldType">
+      <textarea
+        *ngSwitchCase="'textarea'"
+        class="field__textarea"
+        rows="4"
+        (focus)="inputFocus = true"
+        (focusout)="inputFocus = false"
+        [formControl]="$any(control)"
+      ></textarea>
+      <input
+        *ngSwitchDefault
+        class="field__input"
+        type="text"
+        (focus)="inputFocus = true"
+        (focusout)="inputFocus = false"
+        [formControl]="$any(control)"
+      />
+    </ng-container>
+    <span
+      class="field__clear"
+      (click)="clearControlValue()"
+      *ngIf="inputActive && canClearValue"
+    >
+      x
+    </span>
+  </label>
+  <span class="field__text" *ngIf="validationMessage && control.touched">
+    {{ validationMessage }}
+  </span>
 </div>

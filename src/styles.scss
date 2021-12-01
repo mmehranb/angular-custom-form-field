@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+}
+
+:root {
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+}
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  direction: rtl;
+  font-size: 16px;
+  @media screen and (min-width: 400px) {
+    font-size: 18px;
+  }
+}
+
+body {
+  font-family: iranyekan, system-ui, -apple-system,
+    /* Firefox supports this but not yet `system-ui` */ "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  margin: 0;
+  background: white;
+  padding: 10px;
+}

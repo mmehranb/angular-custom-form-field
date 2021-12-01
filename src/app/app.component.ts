@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +8,21 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   form: FormGroup;
-  title = 'angular-custom-form-field';
+  form1: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
-      test: [0],
+      test: [null, [Validators.required]],
       test1: [0],
+    });
+    this.form1 = this.formBuilder.group({
+      test2: [null, [Validators.required]],
+      test3: [0],
+      test4: [0],
     });
   }
   showFormValue() {
-    console.log(this.form.value);
+    // console.log(this.form);
   }
 }

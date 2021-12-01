@@ -1,0 +1,75 @@
+$field-height: 40px;
+$field-x-space: 12px;
+
+$field-background: white;
+
+$field-color: #333;
+$field-focus-color: #6cbaff;
+$field-invalid-color: #ff4d4d;
+
+$transition-duration: 150ms;
+
+.field {
+  &__content {
+    position: relative;
+    display: flex;
+  }
+  &__input,
+  &__textarea {
+    flex: 1 1 0;
+    border: 1px solid $field-color;
+    outline: none;
+    border-radius: 8px;
+
+    &:focus-visible {
+      border-color: $field-focus-color;
+    }
+  }
+  &__input {
+    height: $field-height;
+    padding: 0 $field-x-space 0 calc($field-x-space * 2);
+  }
+  &__textarea {
+    resize: none;
+    padding: $field-x-space;
+  }
+  &__label {
+    padding: 0 4px;
+    right: calc($field-x-space - 4px);
+    top: calc($field-height / 2);
+    position: absolute;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: inherit;
+    background-color: $field-background;
+    transition: all linear $transition-duration;
+  }
+  &__clear {
+    left: 0;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    width: calc($field-x-space * 2);
+    text-align: center;
+  }
+  &__text {
+    font-size: 0.75em;
+  }
+
+  &--focus,
+  &--invalid,
+  &--active {
+    .field__label {
+      top: 0;
+      font-size: 0.75em;
+    }
+  }
+  &--invalid {
+    color: $field-invalid-color;
+
+    .field__input,
+    .field__textarea {
+      border-color: $field-invalid-color;
+    }
+  }
+}
